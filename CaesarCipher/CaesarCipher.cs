@@ -9,22 +9,27 @@ namespace CaesarCipher
         {
             string s=null;
             int n=shiftKey%26;
+            int i=0;
             foreach(char c in text)
             {
+                i=c+n;
+                //rotation for small letters
                 if((c>='a'&& c<='z' ))
                   {
-                      if(((int)c+n)>122)
-                        s+=(char)(97+(c+n-123));
+                      if(i>122)
+                        s+=(char)(i-26);
                      else
-                        s+=(char)(c+n);
+                        s+=(char)i;
                   }
+                  //rotation for capital letters
                 else if(c>='A' && c<='Z')
                 {
-                    if(((int)c+n)>90)
-                        s+=(char)(65 +(c+n-91));
+                    if(i>90)
+                        s+=(char)(i-26);
                     else
-                        s+=(char)(c+n);
+                        s+=(char)i;
                 }
+                //when character is not an alphabet
                 else
                    s+=c;
             }
